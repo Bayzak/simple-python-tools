@@ -15,7 +15,7 @@ class WebURLParser(object):
 	# Variables; supply without a dot (period)
 	TopLevelDomainListing = []; # Will Auto Supply; however you can enter TLDs here manually if desired
 	TopLevelDomainExcept  = [ "com", "net", "org", "edu", "gov" ]; # Enter TLDs here to exclude them from being mass blocked
-	DomainListing		  = []; # Used to track domains, this will auto-populate 
+	DomainListing         = []; # Used to track domains, this will auto-populate 
 
 	def __init__(self, fname):
 		with open( fname, "r" ) as reader, open( "output-" + fname, "w" ) as writer:
@@ -30,10 +30,12 @@ class WebURLParser(object):
 						self.DomainListing.append(url)
 				except TypeError:
 					continue;
-			writer.write(("# Top-Level Domain Blockers\n{}\n\n# Websites\n{}".format("\n".join([("*." + x) for x in sorted(self.TopLevelDomainListing)]), "\n".join([x for x in sorted(self.DomainListing)]))))
+			writer.write(("# Top-Level Domain Blockers\n{}\n\n# Websites\n{}".format("\n".join([("*." + x) for x in sorted(self.TopLevelDomainListing)]),\
+												 "\n".join([x for x in sorted(self.DomainListing)]))))
 
-	def __str__(self):
-		return("# Top-Level Domain Blockers\n{}\n\n# Websites\n{}".format("\n".join([("*." + x) for x in sorted(self.TopLevelDomainListing)]), "\n".join([x for x in sorted(self.DomainListing)])));
+	def __str__(self): # Used for testing in an IDE
+		return("# Top-Level Domain Blockers\n{}\n\n# Websites\n{}".format("\n".join([("*." + x) for x in sorted(self.TopLevelDomainListing)]),\
+										  "\n".join([x for x in sorted(self.DomainListing)])));
 
 	def seperationTesting(self, url): # Parse URL
 
